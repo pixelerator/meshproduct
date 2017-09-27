@@ -4,7 +4,12 @@ app.config(function($routeProvider){
         {
             templateUrl : "views/home.html",
             controller :  "homeController"
-        })
+        }).
+        when("/add",
+        {
+            templateUrl : "views/products/add.html",
+            controller :  "productController"
+        });
 });
 app.controller("homeController",function($scope){
     $scope.model = {

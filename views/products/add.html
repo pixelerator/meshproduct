@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="col-md-5">
+        <div class="form-area">
+            <form role="form" name="productForm">
+                <br style="clear:both">
+                <h3 style="margin-bottom: 25px; text-align: left;">Add Product</h3>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="productName" ng-model="productName" char-limit name="productName" placeholder="Product Name">
+                    <span class="help-block" ng-show="productForm.productName.$invalid && productForm.productName.$touched "><p class="help-block ">Please Enter Product Name | Name Should be more than 3 char</p></span>
+
+                </div>
+
+                <div class="form-group">
+                    <textarea class="form-control" ng-model="productDescription" type="textarea" id="message" placeholder="Product_description" maxlength="140" rows="7"></textarea>
+                    <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>
+                </div>
+                <span style="display:none" >{{ formValid = productForm.$dirty && productForm.$valid}}</span>
+
+                <button type="submit" ng-click = "addProduct()" id="submit"  name="submit" class="btn btn-primary pull-right">
+                    Submit Form</button>
+            </form>
+        </div>
+    </div>
+</div>
