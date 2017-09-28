@@ -9,6 +9,8 @@ app.controller("productController",function($scope, $http){
     });
     $scope.model.products = {};
     $scope.model.currentProduct = {};
+    $scope.productError = false;
+    $scope.productErrorList = [];
     $scope.addProduct = function(){
         if($scope.formValid){
             $scope.model.currentProduct =
@@ -23,10 +25,26 @@ app.controller("productController",function($scope, $http){
             $http.post('model/save_product_json.php', $scope.model.currentProduct)
                 .then(
                 function (response) {
-                    console.log(response);
+                    $scope.productErrorList = [];
+                    $scope.productError = false;
+                     //console.log(response.data);
+                    //errors
+                    if(response.data.status==1){
+                        $scope.productError = true;
+                        angular.forEach(response.data.errorData, function(value, key) {
+                            value = value.join("</br>");
+                            $scope.productErrorList.push(value);
+
+
+                        });
+                        console.log($scope.productErrorList);
+                    }else{
+                        //No Error
+                    }
+
                 },
                 function (response) {
-                   console.log(response);
+                   //console.log(response);
                 });
         }
     } ;
