@@ -1,0 +1,16 @@
+{
+    "name": "intekhab/meshproduct",
+    "description": "SPA Angular Js",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "pixelerator",
+            "email": "mohammed_intekhab@hotmail.com"
+        }
+    ],
+    "require": {
+        "joshcam/mysqli-database-class": "dev-master",
+        "vlucas/valitron": "^1.4"
+    }
+}
