@@ -13,12 +13,14 @@
                     </ul>
 
                 </div>
-                <div class="form-group">
+                                <div class="form-group">
                     <input type="text" class="form-control" id="productName" ng-model="productName" char-limit name="productName" placeholder="Product Name">
                     <span class="help-block" ng-show="productForm.productName.$invalid && productForm.productName.$touched "><p class="help-block ">Please Enter Product Name | Name Should be more than 3 char</p></span>
 
                 </div>
-
+                <div class="form-group">
+                    <input type="file" ng-model="productImage" accept="image/*" app-filereader />
+                </div>
                 <div class="form-group">
                     <textarea class="form-control" ng-model="productDescription" type="textarea" id="message" placeholder="Product_description" maxlength="140" rows="7"></textarea>
                     <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>
