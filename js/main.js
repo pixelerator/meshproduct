@@ -9,6 +9,11 @@ app.config(function($routeProvider){
         {
             templateUrl : "views/products/add.html",
             controller :  "productController"
+        }).
+        when("/products",
+        {
+            templateUrl:    "views/products/view.html",
+            controller:     "productController"
         });
 });
 app.controller("homeController",function($scope){

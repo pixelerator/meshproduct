@@ -1,4 +1,27 @@
-app.controller("productController",function($scope, $http){
+// adding populate service to get product data
+app.factory('productService', function($rootScope, $http) {
+    var productService = {};
+
+    productService.data = {};
+
+    //Gets the list of nuclear weapons
+    productService.getProducts = function() {
+        $http.get('model/get_products.php')
+            .then(function(data) {
+
+                productService.data.products = data.data;
+            },function(data){
+
+            });
+
+        return productService.data;
+    };
+
+    return productService;
+});
+//end of it
+
+app.controller("productController",function($scope, $http,productService){
     $scope.model = {
         message:"Hello World from products"
     };
@@ -7,7 +30,7 @@ app.controller("productController",function($scope, $http){
         console.info('productForm watch');
         console.log($scope.formValid);
     });
-    $scope.model.products = {};
+    $scope.model.products = productService.getProducts();
     $scope.model.currentProduct = {};
     $scope.productError = false;
     $scope.productErrorList = [];
