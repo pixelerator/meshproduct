@@ -21,15 +21,18 @@ app.factory('productService', function($rootScope, $http) {
 });
 //end of it
 
-app.controller("productController",function($scope, $http,productService){
+app.controller("productController",function($scope, $http,productService,$routeParams,proImage){
+
+    $scope.productId = $routeParams.productId;
     $scope.model = {
         message:"Hello World from products"
     };
     $scope.formValid = false;
-    $scope.$watch('productForm', function() {
+    $scope.$watch('productForm', function(  ) {
         console.info('productForm watch');
         console.log($scope.formValid);
     });
+
     $scope.model.products = productService.getProducts();
     $scope.model.currentProduct = {};
     $scope.productError = false;
@@ -131,3 +134,29 @@ app.directive('appFilereader', function($q) {
         } //link
     }; //return
 });
+/*pCtrl.checkId = function($q,$timeout,$http,$route,$location){
+    var defer = $q.defer();
+    pCtrl.productId = $route.current.params.productId;
+    var productData = {};
+    $timeout(function(){
+       // console.log(this.productId);
+        $http.get("model/checkProductById.php?productId="+pCtrl.productId).then(function(data){
+            if(data.data.status==1){
+                productData = data.data.data;
+               // console.log("afterthis");
+               // console.log(productData);
+                defer.resolve();
+                return productData;
+            }else{
+                //defer.reject();
+                $location.path("/");
+
+            }
+        });
+
+    },1000)
+        defer.promise;
+  //  console.log("Here i am");
+    //    console.log(productData);
+    //return productData;
+}*/

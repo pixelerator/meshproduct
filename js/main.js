@@ -5,10 +5,22 @@ app.config(function($routeProvider){
             templateUrl : "views/home.html",
             controller :  "homeController"
         }).
-        when("/add",
+        when("/add/:productId?",
         {
             templateUrl : "views/products/add.html",
-            controller :  "productController"
+            controller :  "productController",
+            resolve: {
+                proImage : function(){
+                    return {
+                        hotelName:function(){
+                            return "myFreind Hotel";
+                        },
+                        hotelAddress:function(){
+                            return "myFr Address"
+                        }
+                    }
+                }
+            }
         }).
         when("/products",
         {
