@@ -52,6 +52,7 @@ app.controller("productController",function($scope, $http,productService,$routeP
 
     $scope.model.currentProduct = {};
     $scope.productError = false;
+    $scope.productEr = false;
     $scope.productErrorList = [];
     $scope.addProduct = function(){
         if($scope.formValid){
@@ -71,6 +72,7 @@ app.controller("productController",function($scope, $http,productService,$routeP
                 function (response) {
                     $scope.productErrorList = [];
                     $scope.productError = false;
+                    $scope.productEr = false;
                      console.log(response.data);
                     //errors
                     if(response.data.status==1){
@@ -90,6 +92,8 @@ app.controller("productController",function($scope, $http,productService,$routeP
                 function (response) {
                    //console.log(response);
                 });
+        }else{
+            $scope.productEr = true;
         }
     } ;
 });
