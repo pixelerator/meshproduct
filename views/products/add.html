@@ -25,8 +25,8 @@
                     <input type="file" ng-model="productImage" accept="image/*" app-filereader />
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" ng-model="productDescription" type="textarea" id="message" placeholder="Product_description" maxlength="140" rows="7"></textarea>
-                    <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>
+                    <textarea class="form-control" ng-model="productDescription" type="textarea" id="message" placeholder="Product_description" maxlength="200" rows="7"></textarea>
+
                 </div>
                 <span style="display:none" >{{ formValid = productForm.$dirty && productForm.$valid}}</span>
 

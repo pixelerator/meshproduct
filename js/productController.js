@@ -22,7 +22,7 @@ app.factory('productService', function($rootScope, $http) {
 });
 //end of it
 
-app.controller("productController",function($scope, $http,productService,$routeParams,$route){
+app.controller("productController",function($scope, $http,productService,$routeParams,$route,$location){
 
    // $scope.productId = $routeParams.productId;
     $scope.currentId = 0;
@@ -72,8 +72,8 @@ app.controller("productController",function($scope, $http,productService,$routeP
                 function (response) {
                     $scope.productErrorList = [];
                     $scope.productError = false;
-                    $scope.productEr = false;
-                     console.log(response.data);
+                    //$scope.productEr = false;
+                     console.log(response.data.data.id);
                     //errors
                     if(response.data.status==1){
                         $scope.productError = true;
@@ -85,6 +85,8 @@ app.controller("productController",function($scope, $http,productService,$routeP
                         });
                         console.log($scope.productErrorList);
                     }else{
+                        bootbox.alert("<div class='alert alert-success'>Product Added Successfully</div>");
+                        $location.path("/add/"+response.data.data.id);
                         //No Error
                     }
 
@@ -93,7 +95,10 @@ app.controller("productController",function($scope, $http,productService,$routeP
                    //console.log(response);
                 });
         }else{
-            $scope.productEr = true;
+
+            bootbox.alert("<div class='alert alert-danger'>Please input all values</div>");
+
+            //$scope.productEr = true;
         }
     } ;
 });
