@@ -3,6 +3,7 @@
 require_once "../vendor/autoload.php";
 require_once "../lib/functions.php";
 $params = json_decode(file_get_contents('php://input'),true);
+print_r($params); die;
 $db = new MysqliDb ('localhost', 'root', '', 'meshproduct');
 $v = new Valitron\Validator($params);
 $v->rule('required', ['productName', 'productDescription']);

@@ -1,4 +1,5 @@
 // adding populate service to get product data
+
 app.factory('productService', function($rootScope, $http) {
     var productService = {};
 
@@ -21,19 +22,34 @@ app.factory('productService', function($rootScope, $http) {
 });
 //end of it
 
-app.controller("productController",function($scope, $http,productService,$routeParams,proImage){
+app.controller("productController",function($scope, $http,productService,$routeParams,$route){
 
-    $scope.productId = $routeParams.productId;
+   // $scope.productId = $routeParams.productId;
+    $scope.currentId = 0;
     $scope.model = {
         message:"Hello World from products"
     };
+    if(angular.isDefined($route.current)){
+        if($route.current.loadedTemplateUrl=="views/products/add.html"){
+            console.log($route.current.loadedTemplateUrl);
+            var currentProduct = $route.current.locals.checkId;
+            $scope.productName = currentProduct.productName;
+            $scope.productDescription = currentProduct.productDescription;
+            $scope.currentId = currentProduct.id;
+
+        }
+
+
+    }
+
     $scope.formValid = false;
     $scope.$watch('productForm', function(  ) {
         console.info('productForm watch');
-        console.log($scope.formValid);
+
     });
 
     $scope.model.products = productService.getProducts();
+
     $scope.model.currentProduct = {};
     $scope.productError = false;
     $scope.productErrorList = [];
@@ -43,7 +59,8 @@ app.controller("productController",function($scope, $http,productService,$routeP
                     {
                         productName : $scope.productName,
                         productDescription: $scope.productDescription,
-                        productImage : $scope.productImage
+                        productImage : $scope.productImage,
+                        productId : $scope.currentId
 
                     };
             console.log($scope.model.currentProduct);
@@ -54,7 +71,7 @@ app.controller("productController",function($scope, $http,productService,$routeP
                 function (response) {
                     $scope.productErrorList = [];
                     $scope.productError = false;
-                     //console.log(response.data);
+                     console.log(response.data);
                     //errors
                     if(response.data.status==1){
                         $scope.productError = true;
