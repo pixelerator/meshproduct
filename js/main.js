@@ -47,6 +47,6 @@ app.config(function($routeProvider){
 });
 app.controller("homeController",function($scope){
     $scope.model = {
-        message:"Hello World"
+        message:"Hello World from Js"
     };
 });
